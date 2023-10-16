@@ -99,7 +99,7 @@ const Node = ({node, root, setRoot, style, nodeLevel}: { node: TreeNode, root: T
         if (editMode) {
             return (
                 <>
-                    <input value={localState} onChange={(e) => setLocalState(e.target.value)}/>
+                    <input value={localState || ''} onChange={(e) => setLocalState(e.target.value)}/>
                     <button onClick={handleCancel}><CancelIcon/></button>
                     <button onClick={handleSave}><SaveIcon/></button>
                 </>
