@@ -20,8 +20,10 @@ export default function Home() {
 
     }
 
-    const [treeStyle, setTreeStyle] = useState({
-        position: "relative"
+    const [treeStyle, setTreeStyle] = useState<any>({
+        position: "relative",
+        left: 0,
+        top: 0
     });
 
     function handleDragStart(e: React.DragEvent) {
@@ -29,14 +31,18 @@ export default function Home() {
     }
     function handleDropOver(e: React.DragEvent) {
         e.preventDefault();
-        const mouseX = pos.pos3 - e.clientX;
-        const mouseY = pos.pos4  - e.clientY;
-        setPos({pos3: e.clientX, pos4: e.clientY});
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        console.log(e.nativeEvent.offsetX);
+        console.log(e.nativeEvent.clientX);
+        console.log(e.screenX);
+        console.log(e.movementX);
 
         setTreeStyle({
             position: 'fixed',
-            left: `${e.nativeEvent.offsetX - mouseX}px`,
-            top: `${e.nativeEvent.offsetY - mouseY}px`
+            left: `${mouseX}px`,
+            top: `${mouseY}px`
         });
     }
 
@@ -49,7 +55,8 @@ export default function Home() {
             <div className="treeSection"
                  style={{transform: `scale(${zoom}`}}
                  onDragStart={handleDragStart}
-                 onDragOver={handleDropOver}>
+                 onDragOver={handleDropOver}
+            >
                 <Tree treeStyle={treeStyle}/>
             </div>
         </main>
