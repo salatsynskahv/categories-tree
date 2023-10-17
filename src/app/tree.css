@@ -1,0 +1,103 @@
+:root {
+    --border-color: #d3d7e0;
+}
+
+.tree,
+.tree ul,
+.tree li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+.tree {
+    margin: 0 0 1em;
+    text-align: center;
+}
+.tree,
+.tree ul {
+    display: table;
+}
+.tree ul {
+    width: 100%;
+}
+.tree li {
+    display: table-cell;
+    padding: 1em 0;
+    vertical-align: top;
+}
+.tree li:before {
+    outline: solid 1px var(--border-color);
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.tree li:first-child:before {
+    left: calc(50% - 40px);
+}
+.tree li:last-child:before {
+    right: calc(50% + 40px);
+}
+.tree code,
+.tree span {
+    font-size: 1rem;
+    border-radius: .2em;
+    display: inline-block;
+    margin: 0 .2em .5em;
+    padding: .2em .5em;
+    position: relative;
+}
+
+.tree span input {
+    height: 20px;
+    font-size: 1rem;
+    border: none;
+}
+
+
+.tree code:before,
+.tree span:before {
+    outline: solid 1px var(--border-color);
+    content: "";
+    height: .9em;
+    margin-inline: 50%;
+    left: 0%;
+    position: absolute;
+}
+
+/*.tree ul:before {*/
+/*    outline: solid 1px #666;*/
+/*    content: "";*/
+/*    height: .4em;*/
+/*    margin-inline: 50%;*/
+/*    left: 0%;*/
+/*    position: absolute;*/
+/*}*/
+.tree ul:before {
+    top: -.5em;
+}
+.tree code:before,
+.tree span:before {
+    top: -1em;
+}
+.tree>li {
+    margin-top: 0;
+}
+.tree>li:before,
+.tree>li:after,
+.tree>li>code:before,
+.tree>li>span:before {
+    outline: none;
+}
+
+/*.tree button {*/
+/*    margin-inline: 2px;*/
+/*}*/
+
+.node-menu {
+    width: 80px;
+    margin-left: -8px;
+    margin-right: 8px;
+}

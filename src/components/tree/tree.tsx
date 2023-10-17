@@ -1,6 +1,6 @@
-'use client';
-import React, {useState} from 'react';
-import Node from './node';
+import '../../app/tree.css';
+import {useState} from "react";
+import Node from "@/components/tree/node";
 import {generateUniqueId} from "@/components/utils";
 
 
@@ -16,22 +16,16 @@ export class TreeNode {
     }
 }
 
-const Tree = ({treeStyle}: {treeStyle : object}) => {
+export const Tree = () => {
     const [rootNode, setRootNode] = useState(new TreeNode(null, 'Category'));
 
     const rootStyle = {
-        cursor: 'move',
         border: '1px dashed var(--border-color)'
     };
 
-
     return (
-
-            <div className="tree" style={treeStyle}  >
-                <Node node={rootNode} root={rootNode} setRoot={setRootNode} style={rootStyle} nodeLevel={0} />
-            </div>
+        <ul className="tree">
+            <Node node={rootNode} root={rootNode} setRoot={setRootNode} style={rootStyle} nodeLevel={0}/>
+        </ul>
     )
-
 }
-
-export default Tree;
