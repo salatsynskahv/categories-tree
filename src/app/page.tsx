@@ -5,32 +5,22 @@ import Node from "@/components/tree/node";
 import {HiOutlineMinus, HiPlus} from "react-icons/hi";
 import DragMove from "@/components/DragMove";
 import {HiMiniPaperAirplane} from "react-icons/hi2";
+import {iconSize} from "@/components/utils";
 
-
-interface Points {
-    pos3: number,
-    pos4: number
-}
 
 export default function Home() {
     const [zoom, setZoom] = useState(1);
     const [rootNode, setRootNode] = useState(new TreeNode(null, 'Category'));
-
-    const [rootStyle, setRootStyle] = useState<object>({});
+    const [rootStyle, setRootStyle] = useState<object>({border: 'dashed 1px grey'});
+    const [translate, setTranslate] = useState({x: 0, y: 0});
 
     function handleChangeZoom() {
         setZoom(prevState => prevState + 0.1);
     }
 
     function handleCenter() {
-        setTranslate({
-            x: 0,
-            y: 0
-        });
+        setTranslate({x: 0, y: 0});
     }
-
-
-    const [translate, setTranslate] = useState({x: 0, y: 0});
 
     const handleDragMove = (e: React.PointerEvent) => {
         setTranslate({
@@ -61,17 +51,17 @@ export default function Home() {
     return (
         <main>
             <header>
-                <button onClick={handleCenter}><HiMiniPaperAirplane size={'1.3rem'}/></button>
+                <button onClick={handleCenter}><HiMiniPaperAirplane size={iconSize}/></button>
                 <button><HiPlus size={'1.3rem'} onClick={increaseZoom}/></button>
                 <ul>
                     <li>{zoom * 100}%
                         <ul className="dropdown" aria-label="submenu">
                             {zoomValues.map((value) => (
-                                <li onClick={() => setZoom(value / 100)}>{`${value}%`}</li>))}
+                                <li key={value} onClick={() => setZoom(value / 100)}>{`${value}%`}</li>))}
                         </ul>
                     </li>
                 </ul>
-                <button onClick={decreaseZoom}><HiOutlineMinus size={'1.3rem'}/></button>
+                <button onClick={decreaseZoom}><HiOutlineMinus size={iconSize}/></button>
             </header>
             <DragMove onDragMove={handleDragMove} setStyle={setRootStyle}>
                 <div className="treeSection">

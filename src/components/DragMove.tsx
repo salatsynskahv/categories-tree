@@ -18,12 +18,12 @@ export default function DragMove(props: DragMoveProps) {
 
     const handlePointerDown = (e: React.PointerEvent) => {
         setIsDragging(true);
-        setStyle({cursor: 'move'});
+        setStyle((prev: object) => {return  {...prev, cursor: 'move'}});
     };
 
     const handlePointerUp = (e: React.PointerEvent) => {
         setIsDragging(false);
-        setStyle({cursor: 'auto'});
+        setStyle((prev: object) => {return  {...prev, cursor: 'auto'}});
     };
 
 

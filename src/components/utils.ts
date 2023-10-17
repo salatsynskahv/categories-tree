@@ -13,3 +13,5 @@ export const getColorByLevel = function (level: number): string {
     const colorToLevelElement = colorToLevel[level] || '#f3f3f5';
     return colorToLevelElement;
 }
+
+export const iconSize: string = '1.2em';

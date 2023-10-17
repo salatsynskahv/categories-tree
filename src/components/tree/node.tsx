@@ -1,6 +1,6 @@
 'use client';
 import React, {useEffect, useRef, useState} from 'react';
-import {getColorByLevel} from "@/components/utils";
+import {getColorByLevel, iconSize} from "@/components/utils";
 import {HiCheckCircle, HiPlusCircle} from "react-icons/hi";
 import {HiMiniPencilSquare, HiMiniXCircle} from "react-icons/hi2";
 import {TreeNode} from "@/components/tree/tree";
@@ -63,17 +63,18 @@ const Node = ({node, root, setRoot, nodeLevel, style}: {node: TreeNode, root: Tr
 
 
     function nodeDependsOnMode(): React.JSX.Element {
+        const hasChildren : boolean  = Boolean(node.children && node.children.length > 0);
         if (editMode) {
             return (
                 <>
-                <span className="node-label" style={style}>
+                <span className={hasChildren ? "node-label addLine" :"node-label"} style={style}>
                     <input style={style}
                            value={localState || ''}
                            onChange={(e) => setLocalState(e.target.value)}/>
                 </span>
                     <div className="node-menu" style={{display: 'inline-block'}}>
-                        <button onClick={handleCancel}><HiMiniXCircle size='1.3rem'/></button>
-                        <button onClick={handleSave}><HiCheckCircle size='1.3rem'/></button>
+                        <button onClick={handleCancel}><HiMiniXCircle size={iconSize}/></button>
+                        <button onClick={handleSave}><HiCheckCircle size={iconSize}/></button>
                     </div>
                 </>
 
@@ -82,13 +83,13 @@ const Node = ({node, root, setRoot, nodeLevel, style}: {node: TreeNode, root: Tr
         } else {
             return (
                 <>
-                    <span className="node-label" style={style} >{node.value}</span>
+                    <span className={hasChildren ? "node-label addLine" :"node-label"} style={style} >{node.value}</span>
                     <div className="node-menu" style={{display: 'inline-block'}}>
 
-                        <button onClick={addNode}><HiPlusCircle size='1.3rem'/></button>
+                        <button onClick={addNode}><HiPlusCircle size={iconSize}/></button>
                         {(node.id !== root.id) && <>
-                            <button onClick={editCategory}><HiMiniPencilSquare size='1.3rem'/></button>
-                            <button onClick={deleteCategory}><HiMiniXCircle size='1.3rem'/></button>
+                            <button onClick={editCategory}><HiMiniPencilSquare size={iconSize}/></button>
+                            <button onClick={deleteCategory}><HiMiniXCircle size={iconSize}/></button>
                         </>
                         }
                     </div>
@@ -99,14 +100,12 @@ const Node = ({node, root, setRoot, nodeLevel, style}: {node: TreeNode, root: Tr
 
 
     function calculateColor() {
-        // console.log("level: " +  nodeLevel);
         return getColorByLevel(nodeLevel);
     }
 
     const childrenStyle = {
         backgroundColor: calculateColor()
     }
-
 
     return (
         <li draggable={node.id === root.id}>

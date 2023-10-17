@@ -1,5 +1,6 @@
 :root {
-    --border-color: #d3d7e0;
+    --border-color: #eeeeee;
+    --outline-width: 1px;
 }
 
 .tree,
@@ -27,7 +28,7 @@
     vertical-align: top;
 }
 .tree li:before {
-    outline: solid 1px var(--border-color);
+    outline: solid var(--outline-width) var(--border-color);
     content: "";
     left: 0;
     position: absolute;
@@ -59,7 +60,7 @@
 
 .tree code:before,
 .tree span:before {
-    outline: solid 1px var(--border-color);
+    outline: solid var(--outline-width) var(--border-color);
     content: "";
     height: .9em;
     margin-inline: 50%;
@@ -67,6 +68,15 @@
     position: absolute;
 }
 
+.addLine:after {
+    top: 1.8em;
+    outline: solid var(--outline-width) var(--border-color);
+    content: "";
+    height: .3em;
+    margin-inline: 50%;
+    left: 0%;
+    position: absolute;
+}
 /*.tree ul:before {*/
 /*    outline: solid 1px #666;*/
 /*    content: "";*/
