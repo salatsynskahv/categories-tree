@@ -16,14 +16,23 @@ export default function DragMove(props: DragMoveProps) {
 
     const [isDragging, setIsDragging] = useState(false);
 
+
+
     const handlePointerDown = (e: React.PointerEvent) => {
         setIsDragging(true);
         setStyle((prev: object) => {return  {...prev, cursor: 'move'}});
     };
 
-    const handlePointerUp = (e: React.PointerEvent) => {
+    function stopDragging(): void {
         setIsDragging(false);
         setStyle((prev: object) => {return  {...prev, cursor: 'auto'}});
+    }
+    const handleMouseLeave = (e: React.MouseEvent): void => {
+        stopDragging();
+    }
+
+    const handlePointerUp = (e: React.PointerEvent): void => {
+       stopDragging();
     };
 
     const handlePointerMove = (e: React.PointerEvent) => {
@@ -34,7 +43,9 @@ export default function DragMove(props: DragMoveProps) {
         <div
             onPointerDown={handlePointerDown}
             onPointerUp={handlePointerUp}
-            onPointerMove={handlePointerMove}>
+            onPointerMove={handlePointerMove}
+            onMouseLeave={handleMouseLeave}
+        >
             {children}
         </div>
     );
