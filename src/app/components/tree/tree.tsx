@@ -1,5 +1,5 @@
-import '../../app/tree.css';
-import {generateUniqueId} from "@/components/utils";
+import '../../style/tree.css';
+import {generateUniqueId} from "@/app/utils";
 
 
 export class TreeNode {

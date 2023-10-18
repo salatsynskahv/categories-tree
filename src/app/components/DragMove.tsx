@@ -26,8 +26,6 @@ export default function DragMove(props: DragMoveProps) {
         setStyle((prev: object) => {return  {...prev, cursor: 'auto'}});
     };
 
-
-
     const handlePointerMove = (e: React.PointerEvent) => {
         if (isDragging) onDragMove(e);
     };
@@ -36,8 +34,7 @@ export default function DragMove(props: DragMoveProps) {
         <div
             onPointerDown={handlePointerDown}
             onPointerUp={handlePointerUp}
-            onPointerMove={handlePointerMove}
-        >
+            onPointerMove={handlePointerMove}>
             {children}
         </div>
     );

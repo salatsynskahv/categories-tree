@@ -1,12 +1,12 @@
 'use client';
 import React, {useEffect, useRef, useState} from 'react';
-import {getColorByLevel, iconSize} from "@/components/utils";
+import {getColorByLevel, iconSize} from "@/app/utils";
 import {HiCheckCircle, HiPlusCircle} from "react-icons/hi";
 import {HiMiniPencilSquare, HiMiniXCircle} from "react-icons/hi2";
-import {TreeNode} from "@/components/tree/tree";
+import {TreeNode} from "@/app/components/tree/tree";
 
 
-const Node = ({node, root, setRoot, nodeLevel, style}: {node: TreeNode, root: TreeNode, setRoot: any, style: object, nodeLevel: number }) => {
+const Node = ({node, root, setRoot, nodeLevel, style}: { node: TreeNode, root: TreeNode, setRoot: any, style: object, nodeLevel: number }) => {
 
     const [editMode, setEditMode] = useState<boolean>(false);
     const [localState, setLocalState] = useState<string | null>(node.value);
@@ -42,11 +42,9 @@ const Node = ({node, root, setRoot, nodeLevel, style}: {node: TreeNode, root: Tr
 
     function findNodeAndRemove(root: TreeNode | null, idToDelete: number): TreeNode | null {
         if (root === null) return null;
-
         if (root.id === idToDelete) {
             return null;
         }
-
         if (root.children) {
             // @ts-ignore
             root.children = root.children
@@ -57,17 +55,17 @@ const Node = ({node, root, setRoot, nodeLevel, style}: {node: TreeNode, root: Tr
         return root;
     }
 
-    function deleteCategory() {
+    function deleteCategory(): void {
         setRoot({...findNodeAndRemove(root, node.id)});
     }
 
 
     function nodeDependsOnMode(): React.JSX.Element {
-        const hasChildren : boolean  = Boolean(node.children && node.children.length > 0);
+        const hasChildren: boolean = Boolean(node.children && node.children.length > 0);
         if (editMode) {
             return (
                 <>
-                <span className={hasChildren ? "node-label addLine" :"node-label"} style={style}>
+                <span className={hasChildren ? "node-label addLine" : "node-label"} style={style}>
                     <input style={style}
                            value={localState || ''}
                            onChange={(e) => setLocalState(e.target.value)}/>
@@ -83,7 +81,8 @@ const Node = ({node, root, setRoot, nodeLevel, style}: {node: TreeNode, root: Tr
         } else {
             return (
                 <>
-                    <span className={hasChildren ? "node-label addLine" :"node-label"} style={style} >{node.value}</span>
+                    <span className={hasChildren ? "node-label addLine" : "node-label"}
+                          style={style}>{node.value}</span>
                     <div className="node-menu" style={{display: 'inline-block'}}>
 
                         <button onClick={addNode}><HiPlusCircle size={iconSize}/></button>
@@ -97,9 +96,7 @@ const Node = ({node, root, setRoot, nodeLevel, style}: {node: TreeNode, root: Tr
                 </>)
         }
     }
-
-
-    function calculateColor() {
+    function calculateColor(): string {
         return getColorByLevel(nodeLevel);
     }
 

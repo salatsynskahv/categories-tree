@@ -1,11 +1,11 @@
 'use client';
 import React, {useState} from "react";
-import {TreeNode} from "@/components/tree/tree";
-import Node from "@/components/tree/node";
+import {TreeNode} from "@/app/components/tree/tree";
+import Node from "@/app/components/tree/node";
 import {HiOutlineMinus, HiPlus} from "react-icons/hi";
-import DragMove from "@/components/DragMove";
+import DragMove from "@/app/components/DragMove";
 import {HiMiniPaperAirplane} from "react-icons/hi2";
-import {iconSize} from "@/components/utils";
+import {iconSize} from "@/app/utils";
 
 
 export default function Home() {
@@ -14,15 +14,11 @@ export default function Home() {
     const [rootStyle, setRootStyle] = useState<object>({border: 'dashed 1px grey'});
     const [translate, setTranslate] = useState({x: 0, y: 0});
 
-    function handleChangeZoom() {
-        setZoom(prevState => prevState + 0.1);
-    }
-
-    function handleCenter() {
+    function handleCenter(): void {
         setTranslate({x: 0, y: 0});
     }
 
-    const handleDragMove = (e: React.PointerEvent) => {
+    const handleDragMove = (e: React.PointerEvent): void => {
         setTranslate({
             x: translate.x + e.movementX,
             y: translate.y + e.movementY
@@ -31,7 +27,7 @@ export default function Home() {
 
     const zoomValues = [25, 30, 40, 50, 60, 70, 80, 90, 100, 125, 150];
 
-    function increaseZoom() {
+    function increaseZoom(): void {
         const index = zoomValues.findIndex(value => value === zoom * 100);
 
         if (index < zoomValues.length - 1) {
@@ -39,7 +35,7 @@ export default function Home() {
         }
     }
 
-    function decreaseZoom() {
+    function decreaseZoom(): void {
         const index = zoomValues.findIndex(value => value === zoom * 100);
         console.log(index);
         console.log(zoomValues.length)
