@@ -1,5 +1,5 @@
 :root {
-    --border-color: #eeeeee;
+    --border-color: #626060;
     --outline-width: 1px;
 }
 
@@ -42,16 +42,16 @@
     right: calc(50% + 40px);
 }
 .tree code,
-.tree span {
+.tree .node-label {
     font-size: 1rem;
     border-radius: .2em;
     display: inline-block;
     margin: 0 .2em .5em;
-    padding: .2em .5em;
+    padding: .5em .5em;
     position: relative;
 }
 
-.tree span input {
+.tree .node-label input {
     height: 20px;
     font-size: 1rem;
     border: none;
@@ -59,7 +59,7 @@
 
 
 .tree code:before,
-.tree span:before {
+.tree .node-label:before {
     outline: solid var(--outline-width) var(--border-color);
     content: "";
     height: .9em;
@@ -69,10 +69,10 @@
 }
 
 .addLine:after {
-    top: 1.8em;
+    top: 2.3em;
     outline: solid var(--outline-width) var(--border-color);
     content: "";
-    height: .3em;
+    height: .4em;
     margin-inline: 50%;
     left: 0%;
     position: absolute;
@@ -85,11 +85,11 @@
 /*    left: 0%;*/
 /*    position: absolute;*/
 /*}*/
-.tree ul:before {
-    top: -.5em;
-}
+/*.tree ul:before {*/
+/*    top: -.5em;*/
+/*}*/
 .tree code:before,
-.tree span:before {
+.tree .node-label:before {
     top: -1em;
 }
 .tree>li {
@@ -98,7 +98,7 @@
 .tree>li:before,
 .tree>li:after,
 .tree>li>code:before,
-.tree>li>span:before {
+.tree>li>.node-label:before {
     outline: none;
 }
 
@@ -110,4 +110,9 @@
     width: 80px;
     margin-left: -8px;
     margin-right: 8px;
+}
+
+
+.section {
+    height: 90%;
 }

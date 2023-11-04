@@ -40,7 +40,7 @@ export default function DragMove(props: DragMoveProps) {
     };
 
     return (
-        <div
+        <div className="section"
             onPointerDown={handlePointerDown}
             onPointerUp={handlePointerUp}
             onPointerMove={handlePointerMove}

@@ -1,6 +1,6 @@
 'use client';
 import React, {useEffect, useRef, useState} from 'react';
-import {getColorByLevel, iconSize} from "@/app/utils";
+import {getColorByLevel, iconSize, LevelColors} from "@/app/utils";
 import {HiCheckCircle, HiPlusCircle} from "react-icons/hi";
 import {HiMiniPencilSquare, HiMiniXCircle} from "react-icons/hi2";
 import {TreeNode} from "@/app/components/tree/tree";
@@ -65,11 +65,11 @@ const Node = ({node, root, setRoot, nodeLevel, style}: { node: TreeNode, root: T
         if (editMode) {
             return (
                 <>
-                <span className={hasChildren ? "node-label addLine" : "node-label"} style={style}>
+                <div className={hasChildren ? "node-label addLine" : "node-label"} style={style}>
                     <input style={style}
                            value={localState || ''}
                            onChange={(e) => setLocalState(e.target.value)}/>
-                </span>
+                </div>
                     <div className="node-menu" style={{display: 'inline-block'}}>
                         <button onClick={handleCancel}><HiMiniXCircle size={iconSize}/></button>
                         <button onClick={handleSave}><HiCheckCircle size={iconSize}/></button>
@@ -81,8 +81,8 @@ const Node = ({node, root, setRoot, nodeLevel, style}: { node: TreeNode, root: T
         } else {
             return (
                 <>
-                    <span className={hasChildren ? "node-label addLine" : "node-label"}
-                          style={style}>{node.value}</span>
+                    <div className={hasChildren ? "node-label addLine" : "node-label"}
+                          style={style}>{node.value}</div>
                     <div className="node-menu" style={{display: 'inline-block'}}>
 
                         <button onClick={addNode}><HiPlusCircle size={iconSize}/></button>
@@ -96,12 +96,13 @@ const Node = ({node, root, setRoot, nodeLevel, style}: { node: TreeNode, root: T
                 </>)
         }
     }
-    function calculateColor(): string {
+    function calculateColor(): LevelColors {
         return getColorByLevel(nodeLevel);
     }
 
     const childrenStyle = {
-        backgroundColor: calculateColor()
+        backgroundColor: calculateColor().background,
+        color: calculateColor().color
     }
 
     return (

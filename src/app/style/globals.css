@@ -13,18 +13,27 @@ button {
   border: none;
   background: none;
 }
-
+main {
+  background-color: #f6f7fb;
+  height: 100vh;
+}
 header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 10vh;
   margin-inline: 5px;
+  border-bottom: 1px solid #dcdee3;
 }
 
 header button {
   padding: 5px;
   border: none;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  margin: 3px;
+  color: var(--primary-color);
 }
 
 header a {
@@ -98,6 +107,7 @@ header ul li ul li {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .tree {
